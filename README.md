@@ -1,6 +1,6 @@
-# Mec - JavaScript full-stack framework
+# Meč - JavaScript full-stack framework
 
-> `mec` is a simple JavaScript full-stack framework based on Lit Web Components
+> `meč` is a simple JavaScript full-stack framework based on Lit Web Components
 
 ## Getting Started
 
