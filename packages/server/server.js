@@ -4,7 +4,6 @@
 
 import express from "express";
 import http from "http";
-import makeDebug from "debug";
 import { fileRoutes } from "./file-router.js";
 import path, { dirname } from "path";
 import { createGraphqlServer } from "./graphql.js";
