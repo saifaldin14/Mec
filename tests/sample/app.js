@@ -2,7 +2,7 @@ import Mec from "mec";
 
 /**
  * Main application bootstrapping and setup.
- * This script demonstrates how to initialize a Componium application, set up the server,
+ * This script demonstrates how to initialize a Mec application, set up the server,
  * add middleware, routes, routers, and client views.
  */
 const app = await Mec.initialize();
