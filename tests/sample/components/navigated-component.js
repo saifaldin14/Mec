@@ -1,4 +1,4 @@
-import { css, html, MecComponent } from "mec";
+import { css, html, MecComponent } from "mec-framework";
 
 export class NavigatedComponent extends MecComponent {
   static styles = css`

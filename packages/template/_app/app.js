@@ -1,4 +1,4 @@
-import Mec from "mec";
+import Mec from "mec-framework";
 
 /**
  * Main application skeleton

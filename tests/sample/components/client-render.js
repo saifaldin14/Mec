@@ -1,4 +1,4 @@
-import { html, MecComponent } from "mec";
+import { html, MecComponent } from "mec-framework";
 
 export class ClientRender extends MecComponent {
   static properties = {};

@@ -1,4 +1,4 @@
-import { html, MecComponent, MecRouter } from "mec";
+import { html, MecComponent, MecRouter } from "mec-framework";
 
 const routes = [
   {
