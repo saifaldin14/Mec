@@ -1,6 +1,6 @@
 {
   "name": "mec-framework",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Mec Framework",
   "scripts": {
     "test": "ava tests/server-root.test.js",
