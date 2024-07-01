@@ -94,7 +94,7 @@ function installDependencies(dirPath) {
     console.log("Installing dependencies...");
 
     // Execute the 'npm install' command in the specified directory
-    exec("npm install", { cwd: dirPath }, (error, _, _) => {
+    exec("npm install", { cwd: dirPath }, (error, req, res) => {
       if (error) {
         // If there is an error, log the error message and reject the promise
         console.error(`exec error: ${error}`);
