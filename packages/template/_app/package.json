@@ -10,7 +10,7 @@
   },
   "type": "module",
   "dependencies": {
-    "mec": "^1.0.8"
+    "mec-framework": "^1.0.8"
   },
   "devDependencies": {
     "mec-test": "^1.0.0"
