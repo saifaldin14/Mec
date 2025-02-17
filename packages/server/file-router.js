@@ -53,7 +53,6 @@ export const fileRoutes = async (dir, app, gql) => {
         const routeName = fileBlocks[0];
         const fileType = fileBlocks[1];
 
-        // Import route handler
         const routeHandler = await import(`file:///${filePath}`);
 
         debug(`Registering ${fileType.toUpperCase()} ${routePath} `);
@@ -63,15 +62,12 @@ export const fileRoutes = async (dir, app, gql) => {
 
         // Register route handlers based on the file type
         if (fileType === "js" && routeName === "_index") {
-          // Register the route handler for the root path
           app.get(routePath, routeHandler.default);
         } else if (fileType === "get" || fileType === "js") {
-          // Register the route handler for GET requests
           app.get(apiPath, routeHandler.default);
         } else if (fileType === "post") {
-          // Pass, no route handler registered for POST requests
+          // TODO: Pass, no route handler registered for POST requests
         } else if (fileType === "gql" && gql) {
-          // Register the GraphQL schema for the route
           const { typeDefs, resolvers } = await import(`file:///${filePath}`);
           const schema = makeExecutableSchema({ typeDefs, resolvers });
           schemas.push(schema);
