@@ -34,9 +34,7 @@ export default async function initDev(dirPath) {
       );
     }
 
-    // Copy the template directory to the current directory
     await copyDirectoryRecursive(templateDir, currentDir);
-    // Install npm dependencies
     await installDependencies(currentDir);
 
     console.log(
@@ -55,7 +53,6 @@ export default async function initDev(dirPath) {
  * @throws {Error} Throws an error if there is an issue creating a directory or copying a file.
  */
 async function copyDirectoryRecursive(source, target) {
-  // Get the list of files in the source directory
   const files = await fs.readdir(source);
 
   // Copy each file or directory to the target directory
@@ -63,11 +60,9 @@ async function copyDirectoryRecursive(source, target) {
     const sourcePath = path.join(source, file);
     const destPath = path.join(target, file);
 
-    // Get the stat object for the source path
     const stat = await fs.stat(sourcePath);
     console.log(`Creating ${destPath}...`);
 
-    // If the source is a directory, create the directory in the target and recursively copy its contents
     if (stat.isDirectory()) {
       try {
         await fs.mkdir(destPath, { recursive: true });
@@ -93,10 +88,8 @@ function installDependencies(dirPath) {
   return new Promise((resolve, reject) => {
     console.log("Installing dependencies...");
 
-    // Execute the 'npm install' command in the specified directory
     exec("npm install", { cwd: dirPath }, (error, req, res) => {
       if (error) {
-        // If there is an error, log the error message and reject the promise
         console.error(`exec error: ${error}`);
         reject(error);
         return;
