@@ -18,24 +18,19 @@ import { expressMiddleware } from "@apollo/server/express4";
  * @returns {Promise<void>} - Resolves when the Apollo server is started and the middleware is attached to the app
  */
 export const createGraphqlServer = async (app, httpServer, schemas) => {
-  // Create an instance of ApolloServer with the provided schemas and enable introspection
   const apolloServer = new ApolloServer({
     introspection: true,
     schema: mergeSchemas({
       schemas
     }),
-    // Add a plugin to drain the HTTP server on stop
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
   });
 
   await apolloServer.start();
 
-  // Attach the Apollo server middleware to the '/graphql' route of the Express app
   app.use(
     "/graphql",
-    // Parse JSON bodies in the request
     bodyParser.json(),
-    // Convert the Apollo server middleware to an Express middleware
     expressMiddleware(apolloServer)
   );
 }
