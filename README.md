@@ -1,6 +1,6 @@
 # Meč - JavaScript full-stack framework
 
-> `Meč` is a simple JavaScript full-stack framework based on Lit Web Components
+`Meč` is a simple JavaScript full-stack framework based on Lit Web Components
 
 ## Getting Started
 
