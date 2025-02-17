@@ -38,7 +38,6 @@ export default async function create() {
     ]
   });
 
-  // Prompt the user to enter a name for the component
   const name = await input({
     message: `Enter a name for your ${componentTemplate.toUpperCase()}`,
   });
@@ -75,10 +74,7 @@ export default async function create() {
     throw new Error(`Failed to create directory: ${error.message}`);
   }
 
-  // Determine the destination path for the new component
   const destPath = path.resolve(path.join(destDir, `${toSnakeCase(name)}.js`));
-
-  // Copy the template file to the destination path
   try {
     await fs.copyFile(sourcePath, destPath);
     console.log(`Created ${destPath}!`);
