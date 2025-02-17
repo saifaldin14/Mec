@@ -52,7 +52,6 @@ export class Server {
     const app = this.app;
     const httpServer = http.createServer(app);
 
-    // Start the server and log the start message
     app.listen(this.port);
     console.log(`Mec Server (PID: ${process.pid}) started on port: ${this.port}`);
 
@@ -63,7 +62,6 @@ export class Server {
       this.gql
     );
 
-    // Create GraphQL server if enabled
     if (this.gql)
       await createGraphqlServer(app, httpServer, result.schemas);
 
