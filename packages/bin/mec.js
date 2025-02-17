@@ -16,8 +16,6 @@ const { version } = require("../../package.json");
 yargs(process.argv.slice(2))
   .scriptName("mec")
   .usage("$0 <cmd> [args]")
-
-  // Init
   .command(
     "init",
     "initialize a new Mec app ",
