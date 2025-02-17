@@ -27,12 +27,9 @@ export class Renderer {
    * @returns {Promise<unknown>} - The rendered HTML as a promise.
    */
   async render(component, request, response, options) {
-    // Constructing the title tag using the provided options.
     const title = `<title>${options.title}</title>`;
-    // Defining the entry point for the component's script.
     const entrypoint = `<script type="module">await import("/components/${this.name}.js");</script>`;
     debug(`Entrypoint file ${entrypoint}`);
-    // Invoking the provided component function to get the component's render result.
     const componentRender =
       component !== null ? component(request, response) : "";
 
