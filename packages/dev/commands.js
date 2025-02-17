@@ -2,13 +2,9 @@ import chokidar from "chokidar";
 import { spawn } from "node:child_process";
 import initDev from "./init-dev.js";
 import create from "./create.js";
-// `makeDebug` is a function from the "debug" package for creating a debugger instance.
 import makeDebug from "debug";
 
-// Creating a debug instance specifically for "mec:frontend-client-view".
 const debug = makeDebug("mec:commands");
-
-// Variable to store the server process instance
 let server;
 
 /**
@@ -25,19 +21,15 @@ const restartServer = () => {
     server.kill("SIGTERM");
   }
 
-  // Start a new server process
   server = spawn("node", ["--no-deprecation", "app.js"], { stdio: "inherit" });
 
   // Add an event listener for when the server process closes
   server.on("close", (code, signal) => {
     if (signal) {
-      // If the server process is killed with a signal
       debug(`Server process was killed with signal ${signal}`);
     } else if (code !== null) {
-      // If the server process exits with a non-zero code
       console.log(`Server process exited with code ${code}`);
     } else {
-      // If the server process exits normally
       console.log("Server process exited");
     }
   });
@@ -60,7 +52,7 @@ const restartDev = () => {
     .watch(".", {
       ignored: ignores,
     })
-    .on("all", (event, path) => {
+    .on("all", (_, _) => {
       // When a change is detected, restart the server
       restartServer();
     });
