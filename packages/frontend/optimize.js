@@ -17,9 +17,7 @@ export class Optimize {
   async minifyScripts() {
     debug("Minify scripts running...");
 
-    // Source directory containing original components.
     const srcDir = join(process.cwd(), "components");
-    // Destination directory to store minified components.
     const destDir = join(process.cwd(), ".mec/components");
 
     /**
@@ -43,14 +41,10 @@ export class Optimize {
      */
     const minifyFile = (filePath) => {
       if (extname(filePath) === ".js") {
-        // Determine the new path for the minified file.
         let newFilePath = join(destDir, relative(srcDir, filePath));
         let newFileDir = dirname(newFilePath);
 
-        // Ensure the directory for the minified file exists.
         mkdirSync(newFileDir, { recursive: true });
-
-        // Use esbuild to minify the file.
         exec(
           `../../node_modules/.bin/esbuild ${filePath} --minify --outfile=${newFilePath}`,
           (error, stdout, stderr) => {
@@ -67,7 +61,6 @@ export class Optimize {
       }
     };
 
-    // Start the minification process by recursively processing each file.
     recurseDir(srcDir, minifyFile);
   }
 }
