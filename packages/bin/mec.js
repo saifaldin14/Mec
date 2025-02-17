@@ -14,8 +14,8 @@ const { version } = require("../../package.json");
 
 // Set up yargs for command-line argument parsing
 yargs(process.argv.slice(2))
-  .scriptName("mec") // Name of the script as it would appear in help messages
-  .usage("$0 <cmd> [args]") // Display usage string in help output
+  .scriptName("mec")
+  .usage("$0 <cmd> [args]")
 
   // Init
   .command(
@@ -24,10 +24,7 @@ yargs(process.argv.slice(2))
     () => {},
     () => initDev()
   )
-  // Command to watch for server changes and restart
   .command("dev", "watch for server changes and restart", () => {}, restartDev)
-
-  // Command to create a new framework component
   .command("create", "create a framework component", () => {}, create)
   .version(version)
   .demandCommand(1, "")
