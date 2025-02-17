@@ -6,9 +6,6 @@ import MecRouter from "./router.js";
  * Currently, it serves as a placeholder with no internal logic.
  */
 class MecInternal {
-  /**
-   * Constructor for the MecInternal class.
-   */
   constructor() {}
 }
 
