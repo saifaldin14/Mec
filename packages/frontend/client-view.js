@@ -31,11 +31,9 @@ export class ClientView {
    * @throws Will throw an error if the component is not found or not a function.
    */
   async create(request, response) {
-    // Dynamically import the component using the provided name from the views directory.
     const viewPath = path.join(cwd(), "/views/", `${this.name}.js`);
     debug(`Creating view path: ${viewPath}`);
 
-    // Import the component file using the file URL protocol.
     const component = await import(`file:///${viewPath}`);
 
     // Check if the imported component has a default export and it's a function.
@@ -53,7 +51,6 @@ export class ClientView {
       this.options
     );
 
-    // Aggregate the rendering results and return the collected result.
     return await collectResult(result);
   }
 }
