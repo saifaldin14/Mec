@@ -23,15 +23,12 @@ export default class MecRouter {
      * It splits the current URL to get its segments and loads the matched route.
      */
     const onNavigate = () => {
-      // Split the current URL to get its segments.
       const pathNameSplit = window.location.pathname.split("/");
       const pathSegs = pathNameSplit.length > 1 ? pathNameSplit.slice(1) : "";
 
-      // Load the matched route for the current URL segments.
       router.loadRoute(...pathSegs);
     }
 
-    // Listen to browser navigation events.
     window.addEventListener("pushstate", onNavigate);
     window.addEventListener("popstate", onNavigate);
   }
@@ -42,19 +39,11 @@ export default class MecRouter {
    * @param {...string} urlSegs - Segments of the URL.
    */
   loadRoute(...urlSegs) {
-    // Find the route that matches the given URL segments.
-    // The route is matched based on the path segments of the URL.
     const matchedRoute = this._matchUrlToRoute(urlSegs);
-
-    // Construct the full URL from the segments.
     const url = `/${urlSegs.join("/")}`;
 
-    // Update the browser URL with the constructed URL.
     history.pushState({}, "", url);
 
-    // Update the root element's content with the matched route's template.
-    // The root element is the DOM element where the matched route's template
-    // will be rendered.
     const routerOutElem = this.root;
     routerOutElem.innerHTML = matchedRoute.template;
   }
@@ -66,28 +55,18 @@ export default class MecRouter {
    * @returns {Object|undefined} The matched route or undefined if no match found.
    */
   _matchUrlToRoute(urlSegs) {
-    /**
-     * Check if the given URL segments matches the route's path segments.
-     *
-     * @param {Object} route - The route to match against.
-     * @returns {boolean} True if the route matches the URL segments, false otherwise.
-     */
     const routeMatches = (route) => {
       const routePathSegs = route.path.split("/").slice(1);
 
-      // If the number of segments in the route's path and the URL is different,
-      // the route cannot match the URL.
       if (routePathSegs.length !== urlSegs.length) {
         return false;
       }
 
-      // Check if every segment of the route's path matches the given URL segments.
       return routePathSegs.every(
         (routePathSeg, i) => routePathSeg === urlSegs[i]
       );
     };
 
-    // Find the route that matches the given URL segments.
     return this.routes.find(routeMatches);
   }
 
@@ -97,12 +76,7 @@ export default class MecRouter {
    * loadRoute method.
    */
   _loadInitialRoute() {
-    // Split the current URL pathname by "/" and remove the empty string
-    // obtained from the initial split.
     const pathNameSplit = window.location.pathname.split("/").slice(1);
-
-    // If pathNameSplit is empty, set pathSegs to an empty string.
-    // Otherwise, set pathSegs to the sliced array.
     const pathSegs = pathNameSplit.length > 1 ? pathNameSplit : "";
     this.loadRoute(...pathSegs);
   }
