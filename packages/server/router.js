@@ -10,10 +10,6 @@ export default class Router {
    * It initializes an instance of Express router.
    */
   constructor() {
-    /**
-     * The Express router instance.
-     * @type {Object}
-     */
     this.router = express.Router();
   }
 
@@ -38,9 +34,7 @@ export default class Router {
    */
   addMiddleware(name, middleware) {
     this.router.use((req, res, next) => {
-      // Execute the middleware function with the request and response objects.
       middleware(req, res);
-      // Call the next middleware in the chain.
       next();
     });
   }
